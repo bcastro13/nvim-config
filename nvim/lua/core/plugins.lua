@@ -20,7 +20,6 @@ local plugins = {
     "olimorris/onedarkpro.nvim",
     "nvim-treesitter/nvim-treesitter",
     "mbbill/undotree",
-    "tpope/vim-fugitive",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     {
