@@ -10,7 +10,8 @@ require'nvim-treesitter.configs'.setup {
       "rust",
       "bash",
       "dockerfile",
-      "markdown"
+      "markdown",
+      "markdown_inline"
   },
   sync_install = false,
   auto_install = true,

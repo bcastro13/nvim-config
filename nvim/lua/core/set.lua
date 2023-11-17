@@ -34,7 +34,7 @@ vim.opt.updatetime = 50
 
 vim.opt.spell = true
 
-vim.keymap.set("i", "jj", "<Esc>", opts)
+vim.keymap.set("i", "jj", "<Esc>")
 
 -- Line numbers
 vim.wo.relativenumber = true

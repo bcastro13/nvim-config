@@ -17,20 +17,40 @@ local plugins = {
         tag = '0.1.4',
         dependencies = { { 'nvim-lua/plenary.nvim' } }
     },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+    },
     "olimorris/onedarkpro.nvim",
     "nvim-treesitter/nvim-treesitter",
     "mbbill/undotree",
+    'lewis6991/gitsigns.nvim',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    "rafamadriz/friendly-snippets",
     "williamboman/mason.nvim",
+    "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
     {
-        "VonHeikemen/lsp-zero.nvim",
-        branch = "v3.x"
-    },
-    "neovim/nvim-lspconfig",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/nvim-cmp",
-    "L3MON4D3/LuaSnip",
-    {
+        'nvimdev/lspsaga.nvim',
+        config = function()
+            require('lspsaga').setup({
+                ui = {
+                    enable = true,
+                    sign = true,
+                    code_action = '💡',
+                    virtual_text = false,
+                }
+
+            })
+        end,
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter',
+            'nvim-tree/nvim-web-devicons',
+        }
+    },    {
         "folke/trouble.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {},
@@ -40,9 +60,12 @@ local plugins = {
         dependencies = { 'nvim-tree/nvim-web-devicons' },
     },
     {
-        'akinsho/bufferline.nvim',
-        version = "*",
-        dependencies = 'nvim-tree/nvim-web-devicons'
+        'romgrk/barbar.nvim',
+        dependencies = {
+            'lewis6991/gitsigns.nvim',
+            'nvim-tree/nvim-web-devicons',
+        },
+        init = function() vim.g.barbar_auto_setup = false end,
     },
     {
         "nvim-tree/nvim-tree.lua",
