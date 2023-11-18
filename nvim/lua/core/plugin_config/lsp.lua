@@ -10,6 +10,7 @@ local on_attach = function(_, bufnr)
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
+    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, bufopts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
@@ -110,6 +111,15 @@ lsp_conf.eslint.setup({
     on_attach = on_attach,
     capabilities = capabilities,
 })
+
+vim.filetype.add({ extension = {typ = "typst"}})
+lsp_conf.typst_lsp.setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+		exportPdf = "onType"
+	}
+}
 
 
 
