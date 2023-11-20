@@ -5,14 +5,15 @@ require("nvim-tree").setup({
     },
     renderer = {
         indent_markers = {
-            enable = true
+            enable = true,
         },
         icons = {
             git_placement = "signcolumn",
             show = {
                 file = true,
-                folder = false,
+                folder = true,
                 git = true,
+                folder_arrow = false,
             },
         },
     },
