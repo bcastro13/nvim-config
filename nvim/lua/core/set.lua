@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.opt.backspace = '2'
+vim.opt.backspace = "2"
 vim.opt.showcmd = true
 vim.opt.laststatus = 2
 vim.opt.autowrite = true
@@ -39,6 +39,10 @@ vim.keymap.set("i", "jj", "<Esc>")
 -- Line numbers
 vim.wo.relativenumber = true
 vim.opt.colorcolumn = { 79 }
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = "gitcommit",
+	command = "setlocal colorcolumn=72",
+})
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

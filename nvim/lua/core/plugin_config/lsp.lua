@@ -1,7 +1,7 @@
 require("mason-lspconfig").setup()
 local lsp_conf = require("lspconfig");
 
-local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local on_attach = function(_, bufnr)
     -- Enable completion triggered by <c-x><c-o>
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
@@ -61,16 +61,16 @@ lsp_conf.rust_analyzer.setup {
 }
 
 
-lsp_conf.ruff_lsp.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    init_options = {
-        settings = {
-            -- Any extra CLI arguments for `ruff` go here.
-            args = {},
-        }
-    }
-}
+--lsp_conf.ruff_lsp.setup {
+--    on_attach = on_attach,
+--    capabilities = capabilities,
+--    init_options = {
+--        settings = {
+--            -- Any extra CLI arguments for `ruff` go here.
+--            args = {},
+--        }
+--    }
+--}
 
 lsp_conf.gopls.setup {
     on_attach = on_attach,
@@ -110,6 +110,21 @@ lsp_conf.cssls.setup {
 lsp_conf.eslint.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+})
+
+lsp_conf.pyright.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = "off"
+            }
+        }
+    }
 })
 
 vim.filetype.add({ extension = {typ = "typst"}})

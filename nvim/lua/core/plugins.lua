@@ -24,6 +24,7 @@ local plugins = {
     "olimorris/onedarkpro.nvim",
     "nvim-treesitter/nvim-treesitter",
     "mbbill/undotree",
+    "christoomey/vim-tmux-navigator",
     'lewis6991/gitsigns.nvim',
     'hrsh7th/nvim-cmp',
     'hrsh7th/cmp-nvim-lsp',
@@ -33,6 +34,20 @@ local plugins = {
     "williamboman/mason.nvim",
     "neovim/nvim-lspconfig",
     "williamboman/mason-lspconfig.nvim",
+    {
+        "mfussenegger/nvim-lint",
+        lazy = true,
+        event = { "BufReadPre", "BufNewFile" },
+    },
+    {
+        "stevearc/conform.nvim",
+        lazy = true,
+        event = { "BufReadPre", "BufNewFile" },
+    },
+    {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+    },
     {
         'nvimdev/lspsaga.nvim',
         config = function()
