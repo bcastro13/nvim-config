@@ -97,7 +97,7 @@ lsp_conf.eslint.setup({
 	capabilities = capabilities,
 })
 
-lsp_conf.tsserver.setup({
+lsp_conf.ts_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })
