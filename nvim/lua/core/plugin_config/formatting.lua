@@ -4,6 +4,7 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		clojure = { "cljfmt" },
+		css = { "prettier" },
 		python = { "ruff_format", "ruff_fix", "codespell" },
 	},
 	formatters = {
@@ -18,7 +19,7 @@ conform.setup({
 	format_on_save = {
 		lsp_fallback = true,
 		async = false,
-		timeout_ms = 1000,
+		timeout_ms = 2000,
 	},
 })
 
