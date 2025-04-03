@@ -4,7 +4,7 @@ local lsp_conf = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local on_attach = function(_, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
 
 	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -23,20 +23,6 @@ local on_attach = function(_, bufnr)
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
 end
-
-local bufopts = { noremap = true, silent = true }
-
-vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
-vim.keymap.set("n", "gD", "<cmd>Lspsaga incoming_calls<CR>", bufopts)
-vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<CR>", bufopts)
-vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>", bufopts)
-
-vim.keymap.set("n", "<leader>d", "<Cmd>Lspsaga show_line_diagnostics<CR>", bufopts)
-vim.keymap.set("n", "<leader>dn", "<Cmd>Lspsaga diagnostic_jump_next<CR>", bufopts)
-vim.keymap.set("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", bufopts)
-
-vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
-vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", bufopts)
 
 lsp_conf.lua_ls.setup({
 	on_attach = on_attach,
@@ -59,6 +45,11 @@ lsp_conf.lua_ls.setup({
 lsp_conf.clojure_lsp.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+	settings = {
+		clojure_lsp = {
+			sourcePaths = { "src", "test" },
+		},
+	},
 })
 
 lsp_conf.rust_analyzer.setup({
@@ -97,6 +88,11 @@ lsp_conf.eslint.setup({
 	capabilities = capabilities,
 })
 
+lsp_conf.ts_ls.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 lsp_conf.yamlls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -110,13 +106,4 @@ lsp_conf.intelephense.setup({
 lsp_conf.docker_compose_language_service.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
-
-vim.filetype.add({ extension = { typ = "typst" } })
-lsp_conf.typst_lsp.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		exportPdf = "onType",
-	},
 })

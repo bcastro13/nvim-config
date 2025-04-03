@@ -1,2 +1,5 @@
-vim.keymap.set("n", "<leader>t", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>tw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>db", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>dw", "<cmd>Trouble diagnostics toggle<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "gf", "<cmd>Trouble lsp_references toggle<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "go", "<cmd>Trouble lsp_outgoing_calls toggle<cr>", { silent = true, noremap = true })
+vim.keymap.set("n", "<leader>q", "<cmd>Trouble quickfix toggle<cr>", { silent = true, noremap = true })

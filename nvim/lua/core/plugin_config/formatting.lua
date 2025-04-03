@@ -6,12 +6,16 @@ conform.setup({
 		clojure = { "cljfmt" },
 		css = { "prettier" },
 		python = { "ruff_format", "ruff_fix", "codespell" },
+		js = { "prettier", "standardjs" },
 	},
 	formatters = {
 		cljfmt = {
-			command = "/usr/local/bin/cljfmt",
+			command = ".local/share/nvim/mason/bin/cljfmt",
 			args = {
 				"fix",
+				"--remove-multiple-non-indenting-spaces",
+				"--split-keypairs-over-multiple-lines",
+				"--sort-ns-references",
 				"-",
 			},
 		},
