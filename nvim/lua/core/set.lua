@@ -12,6 +12,16 @@ vim.opt.softtabstop = 4
 vim.opt.shiftround = true
 vim.opt.expandtab = true
 
+-- Set 2 spaces for JavaScript and CSS files
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "javascript", "css" },
+	callback = function()
+		vim.opt.tabstop = 2
+		vim.opt.shiftwidth = 2
+		vim.opt.softtabstop = 2
+	end,
+})
+
 vim.opt.smartindent = true
 
 vim.opt.wrap = false

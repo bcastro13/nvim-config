@@ -9,6 +9,10 @@ require("lspsaga").setup({
 	},
 })
 
+vim.diagnostic.config({
+	virtual_text = true,
+})
+
 local bufopts = { noremap = true, silent = true }
 vim.keymap.set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", bufopts)
 vim.keymap.set("n", "gD", "<cmd>Lspsaga incoming_calls<CR>", bufopts)

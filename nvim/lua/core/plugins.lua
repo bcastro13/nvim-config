@@ -64,7 +64,7 @@ local plugins = {
 					enable = true,
 					sign = true,
 					code_action = "💡",
-					virtual_text = false,
+					virtual_text = true,
 				},
 			})
 		end,

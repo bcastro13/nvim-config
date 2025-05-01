@@ -4,9 +4,10 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
 		clojure = { "cljfmt" },
-		css = { "prettier" },
+		css = { "biome" },
 		python = { "ruff_format", "ruff_fix", "codespell" },
-		js = { "prettier", "standardjs" },
+		javascript = { "biome" },
+		json = { "biome" },
 	},
 	formatters = {
 		cljfmt = {

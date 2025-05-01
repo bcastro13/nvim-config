@@ -78,6 +78,11 @@ lsp_conf.dockerls.setup({
 	capabilities = capabilities,
 })
 
+lsp_conf.biome.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+})
+
 lsp_conf.cssls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
