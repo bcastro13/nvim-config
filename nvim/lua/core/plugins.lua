@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
@@ -30,8 +30,6 @@ local plugins = {
 	"nvim-treesitter/nvim-treesitter",
 	{
 		"stevearc/oil.nvim",
-		opts = {},
-		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	"mbbill/undotree",
@@ -40,8 +38,6 @@ local plugins = {
 	"hrsh7th/nvim-cmp",
 	"hrsh7th/cmp-nvim-lsp",
 	"williamboman/mason.nvim",
-	"neovim/nvim-lspconfig",
-	"williamboman/mason-lspconfig.nvim",
 	{
 		"mfussenegger/nvim-lint",
 		lazy = true,
@@ -83,20 +79,9 @@ local plugins = {
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
-		"iamcco/markdown-preview.nvim",
-		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-		ft = { "markdown" },
-		build = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-		lazy = true,
-	},
-	{
 		"0x00-ketsu/maximizer.nvim",
 		lazy = true,
 	},
 }
 
-local opts = {}
-
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins, {})

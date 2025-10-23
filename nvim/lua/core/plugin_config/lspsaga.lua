@@ -25,20 +25,3 @@ vim.keymap.set("n", "<leader>dp", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", bufop
 
 vim.keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", bufopts)
 vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", bufopts)
-
-local function clean_namespace()
-	local params = {
-		command = "clean-ns",
-		arguments = {
-			vim.uri_from_bufnr(0), -- File URI
-			0, -- Line number (ignored, but required)
-			0, -- Character number (ignored, but required)
-		},
-	}
-	vim.lsp.buf.execute_command(params)
-end
-
---vim.api.nvim_create_autocmd("BufWritePre", {
---	pattern = "*.clj,*.cljs,*.cljc",
---	callback = clean_namespace,
---})

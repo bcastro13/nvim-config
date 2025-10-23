@@ -1,109 +1,118 @@
-require("mason-lspconfig").setup()
-local lsp_conf = require("lspconfig")
-
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local on_attach = function(_, bufnr)
-	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
 	vim.keymap.set("i", "<C-h>", function()
 		vim.lsp.buf.signature_help()
 	end, bufopts)
-	vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-	vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<CR>", bufopts)
-	vim.keymap.set("n", "<space>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
-	vim.keymap.set("n", "<space>f", function()
-		vim.lsp.buf.format({ async = true })
-	end, bufopts)
 end
 
-lsp_conf.lua_ls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+vim.lsp.config.lua_ls = {
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { ".git", "lua" },
 	settings = {
 		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
+			diagnostics = { globals = { "vim" } },
 			workspace = {
 				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
+					vim.fn.stdpath("config") .. "/lua",
+					vim.fn.expand("$VIMRUNTIME/lua"),
 				},
 			},
 		},
 	},
-})
-
-lsp_conf.clojure_lsp.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
+}
+
+vim.lsp.config.clojure_lsp = {
+	cmd = { "clojure-lsp" },
+	filetypes = { "clojure", "edn" },
+	root_markers = { "project.clj", "deps.edn", ".git" },
 	settings = {
 		clojure_lsp = {
 			sourcePaths = { "src", "test" },
 		},
 	},
-})
-
-lsp_conf.rust_analyzer.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.ruff.setup({
+vim.lsp.config.ruff = {
+	cmd = { "ruff", "server" },
+	filetypes = { "python" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-	init_options = {
-		settings = {
-			-- Any extra CLI arguments for `ruff` go here.
-			args = {},
-		},
-	},
-})
+}
 
-lsp_conf.bashls.setup({
+vim.lsp.config.bashls = {
+	cmd = { "bash-language-server", "start" },
+	filetypes = { "sh", "bash" },
+	root_markers = { ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.dockerls.setup({
+vim.lsp.config.dockerls = {
+	cmd = { "docker-langserver", "--stdio" },
+	filetypes = { "dockerfile" },
+	root_markers = { "Dockerfile", ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.biome.setup({
+vim.lsp.config.biome = {
+	cmd = { "biome", "lsp-proxy" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
+	root_markers = { "biome.json", ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.cssls.setup({
+vim.lsp.config.cssls = {
+	cmd = { "vscode-css-language-server", "--stdio" },
+	filetypes = { "css", "scss", "less" },
+	root_markers = { ".git", "package.json" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.ts_ls.setup({
+vim.lsp.config.ts_ls = {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+	root_markers = { "package.json", "tsconfig.json", ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.yamlls.setup({
+vim.lsp.config.yamlls = {
+	cmd = { "yaml-language-server", "--stdio" },
+	filetypes = { "yaml", "yml" },
+	root_markers = { ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.intelephense.setup({
+vim.lsp.config.docker_compose_language_service = {
+	cmd = { "docker-compose-langserver", "--stdio" },
+	filetypes = { "yaml", "yml" },
+	root_markers = { "docker-compose.yml", "docker-compose.yaml" },
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
+}
 
-lsp_conf.docker_compose_language_service.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
+vim.lsp.enable({
+	"lua_ls",
+	"clojure_lsp",
+	"ruff",
+	"bashls",
+	"dockerls",
+	"biome",
+	"cssls",
+	"ts_ls",
+	"yamlls",
+	"intelephense",
+	"docker_compose_language_service",
 })
