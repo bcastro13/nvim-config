@@ -57,16 +57,16 @@ lsp_conf.rust_analyzer.setup({
 	capabilities = capabilities,
 })
 
---lsp_conf.ruff_lsp.setup {
---    on_attach = on_attach,
---    capabilities = capabilities,
---    init_options = {
---        settings = {
---            -- Any extra CLI arguments for `ruff` go here.
---            args = {},
---        }
---    }
---}
+lsp_conf.ruff.setup({
+	on_attach = on_attach,
+	capabilities = capabilities,
+	init_options = {
+		settings = {
+			-- Any extra CLI arguments for `ruff` go here.
+			args = {},
+		},
+	},
+})
 
 lsp_conf.bashls.setup({
 	on_attach = on_attach,
@@ -84,11 +84,6 @@ lsp_conf.biome.setup({
 })
 
 lsp_conf.cssls.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
-lsp_conf.eslint.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 })

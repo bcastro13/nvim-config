@@ -48,7 +48,7 @@ vim.keymap.set("i", "jj", "<Esc>")
 
 -- Line numbers
 vim.wo.relativenumber = true
-vim.opt.colorcolumn = { 79 }
+vim.opt.colorcolumn = { 90 }
 vim.api.nvim_create_autocmd({ "FileType" }, {
 	pattern = "gitcommit",
 	command = "setlocal colorcolumn=72",
