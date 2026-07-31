@@ -50,7 +50,6 @@ vim.lsp.config.ruff = {
 vim.lsp.config.bashls = {
 	cmd = { "bash-language-server", "start" },
 	filetypes = { "sh", "bash" },
-	root_markers = { ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
@@ -58,7 +57,6 @@ vim.lsp.config.bashls = {
 vim.lsp.config.dockerls = {
 	cmd = { "docker-langserver", "--stdio" },
 	filetypes = { "dockerfile" },
-	root_markers = { "Dockerfile", ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
@@ -66,7 +64,7 @@ vim.lsp.config.dockerls = {
 vim.lsp.config.biome = {
 	cmd = { "biome", "lsp-proxy" },
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json" },
-	root_markers = { "biome.json", ".git" },
+	root_markers = { "biome.json" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
@@ -90,7 +88,6 @@ vim.lsp.config.ts_ls = {
 vim.lsp.config.yamlls = {
 	cmd = { "yaml-language-server", "--stdio" },
 	filetypes = { "yaml", "yml" },
-	root_markers = { ".git" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 }
@@ -103,11 +100,26 @@ vim.lsp.config.docker_compose_language_service = {
 	capabilities = capabilities,
 }
 
+vim.lsp.config.gopls = {
+	cmd = { "gopls" },
+	filetypes = { "go", "gomod", "gowork", "gotmpl" },
+	on_attach = on_attach,
+	capabilities = capabilities,
+}
+
+vim.lsp.config.postgresls = {
+	cmd = { "postgres-language-server", "lsp-proxy" },
+	filetypes = { "sql" },
+	on_attach = on_attach,
+	capabilities = capabilities,
+}
+
 vim.lsp.enable({
 	"lua_ls",
 	"clojure_lsp",
 	"ruff",
 	"bashls",
+	"gopls",
 	"dockerls",
 	"biome",
 	"cssls",
@@ -115,4 +127,5 @@ vim.lsp.enable({
 	"yamlls",
 	"intelephense",
 	"docker_compose_language_service",
+	"postgresls",
 })

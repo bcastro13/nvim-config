@@ -3,6 +3,7 @@ local lint = require("lint")
 lint.linters_by_ft = {
 	clojure = { "codespell" },
 	python = { "custom_ruff", "codespell" },
+	gitcommit = { "gitlint" },
 }
 
 lint.linters.codespell.args = {

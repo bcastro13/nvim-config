@@ -2,12 +2,13 @@ local conform = require("conform")
 
 conform.setup({
 	formatters_by_ft = {
-		lua = { "stylua" },
 		clojure = { "cljfmt" },
 		css = { "biome" },
-		python = { "ruff_format", "ruff_fix", "codespell" },
 		javascript = { "biome" },
 		json = { "biome" },
+		lua = { "stylua" },
+		python = { "ruff_format", "ruff_fix", "codespell" },
+		sql = { "postgresls", "format" },
 	},
 	formatters = {
 		cljfmt = {
@@ -20,12 +21,31 @@ conform.setup({
 				"-",
 			},
 		},
+		postgresls = {
+			command = "postgres-language-server",
+			args = {
+				"format",
+				"$FILENAME",
+				"--write",
+				"--line-width=90",
+				"--keyword-case=upper",
+				"--constant-case=upper",
+				"--type-case=upper",
+			},
+			stdin = false,
+		},
 	},
-	format_on_save = {
-		lsp_fallback = true,
-		async = false,
-		timeout_ms = 2000,
-	},
+	format_on_save = function(bufnr)
+		if vim.bo[bufnr].filetype == "sql" then
+			return
+		end
+
+		return {
+			lsp_fallback = true,
+			async = false,
+			timeout_ms = 2000,
+		}
+	end,
 })
 
 vim.keymap.set({ "n", "v" }, "<leader>mp", function()

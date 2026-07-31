@@ -27,7 +27,12 @@ local plugins = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	"olimorris/onedarkpro.nvim",
-	"nvim-treesitter/nvim-treesitter",
+	{
+		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
+		branch = "main",
+		build = ":TSUpdate",
+	},
 	{
 		"stevearc/oil.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },

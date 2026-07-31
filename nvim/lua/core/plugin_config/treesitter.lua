@@ -1,25 +1,50 @@
-require("nvim-treesitter.configs").setup({
-	ensure_installed = {
-		"c",
-		"lua",
-		"vim",
-		"vimdoc",
-		"query",
-		"python",
-		"clojure",
-		"rust",
+require("nvim-treesitter").setup({
+	install_dir = vim.fn.stdpath("data") .. "/site",
+})
+
+require("nvim-treesitter").install({
+	"bash",
+	"c",
+	"clojure",
+	"css",
+	"dockerfile",
+	"git_config",
+	"gitattributes",
+	"gitcommit",
+	"gitignore",
+	"git_rebase",
+	"javascript",
+	"lua",
+	"make",
+	"markdown",
+	"markdown_inline",
+	"python",
+	"query",
+	"rust",
+	"sql",
+	"vim",
+	"vimdoc",
+	"yaml",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = {
 		"bash",
-		"dockerfile",
-		"markdown",
-		"markdown_inline",
-		"gitcommit",
+		"c",
+		"clojure",
 		"css",
+		"dockerfile",
+		"gitcommit",
 		"javascript",
+		"lua",
+		"make",
+		"markdown",
+		"python",
+		"rust",
+		"sql",
+		"yaml",
 	},
-	sync_install = false,
-	auto_install = true,
-	highlight = {
-		enable = true,
-		additional_vim_regex_highlighting = false,
-	},
+	callback = function()
+		vim.treesitter.start()
+	end,
 })
